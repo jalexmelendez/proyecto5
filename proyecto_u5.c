@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <locale.h>
-#include <math.h>
 #include <string.h>
 
 int main(void)
@@ -35,7 +34,7 @@ int main(void)
   scanf("\n%c", &feedBack);
   
   if (feedBack == 'Y'|| feedBack == 'y') {
-  	autocomplete(charLeft,ADN);
+  	autocomplete(charLeft,ADN, A, C, G, T);
   }
   
   else {
@@ -44,13 +43,26 @@ int main(void)
    
 }
 
-int autocomplete(int charLeft, char ADN[]) {
+int autocomplete(int charLeft, char ADN[], int A, int C, int G, int T) {
 	char pool[4] = {'A','C','G','T'};
 	int i;
 	for (i=strlen(ADN);i<charLeft;i++){
 		int dato = rand() % strlen(pool);
 		ADN[i] = pool[dato];
 	}
-	printf("\n\n GENERANDO LOS %d DATOS RESTANTES\n\n NUEVA CADENA DE ADN:\n{\n%s\n}", charLeft, ADN);
+	printf("\n\n GENERANDO LOS %d DATOS RESTANTES\n\n NUEVA CADENA DE ADN:\n{\n%s\n}\n", charLeft, ADN);
+	
+	for (i=0; i<1000; ++i) {
+     	if(ADN[i] == 'A'|| ADN[i] == 'C' || ADN[i] == 'G' || ADN[i] == 'T') {
+		 switch(ADN[i]){
+		 case 'A': A++; break;
+		 case 'C': C++; break;
+		 case 'G': G++; break;       
+		 case 'T': T++; break;
+		 default: break;
+		 }
+		}
+	 }
+	 printf(" Nuevo número de datos:\n{\n A:%d\n C:%d\n G:%d\n T:%d\n}\n", A,C,G,T);
 }
 
