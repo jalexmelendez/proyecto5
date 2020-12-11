@@ -2,10 +2,13 @@
 #include <locale.h>
 #include <string.h>
 
+
+
 int main(void)
 {
   int i, A=0, C=0, G=0, T=0;
   char ADN[1000], feedBack;
+  int charLeft;
  
   setlocale(LC_ALL,"");
  
@@ -14,7 +17,7 @@ int main(void)
      scanf("%s", &ADN[0]);
      strupr(ADN);
 
-     for (i=0; i<1000; ++i) {
+     for (i=0; i<strlen(ADN); ++i) {
      	if(ADN[i] == 'A'|| ADN[i] == 'C' || ADN[i] == 'G' || ADN[i] == 'T') {
 		 switch(ADN[i]){
 		 case 'A': A++; break;
@@ -25,9 +28,7 @@ int main(void)
 		 }
 		}
 	 }
-     
-    int charLeft = 1000 - strlen(ADN);
-    
+  charLeft = 1000 - strlen(ADN);
   printf("\n{\n A:%d\n C:%d\n G:%d\n T:%d\n}\n Tu Input:[%s]\n", A,C,G,T,ADN);
   printf("¿Desea auto generar los %d datos faltantes? [y/n]", charLeft);
   
